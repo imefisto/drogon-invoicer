@@ -3,8 +3,32 @@
 <head>
   <meta charset="UTF-8">
   <title>Invoicer!</title>
+  <script>
+function getInvoices() {
+  fetch("/v1/invoices").then(function(response) {
+    return response.json();
+  }).then(function(data) {
+    var table = document.getElementById("invoices");
+
+    data.forEach(function (invoice, index) {
+      var tr = table.insertRow();
+      tr.insertCell().innerText = invoice.id;
+      tr.insertCell().innerText = invoice.customer;
+      tr.insertCell().innerText = invoice.total;
+    });
+  });
+}
+  </script>
 </head>
-<body>
-  This is our invoicer
+<body onload="getInvoices()">
+  <h1>This is our invoicer</h1>
+
+  <table id="invoices">
+    <tr>
+      <th>Number</th>
+      <th>Customer</th>
+      <th>Total</th>
+    </tr>
+  </table>
 </body>
 </html>

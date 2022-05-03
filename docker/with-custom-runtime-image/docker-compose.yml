@@ -1,0 +1,8 @@
+version: "3.9"
+services:
+  app:
+    build:
+      context: ../..
+      dockerfile: "${PWD}/Dockerfile"
+    ports:
+      - "8081:80"

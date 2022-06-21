@@ -17,13 +17,11 @@ int main(int argc, char *argv[]) {
 
     std::cout << "Starting app listening port " << port << std::endl;
 
-    //Set HTTP listener address and port
     drogon::app()
         .addListener("0.0.0.0", port)
-        .setDocumentRoot("docroot");
-    //Load config file
-    //drogon::app().loadConfigFile("../config.json");
-    //Run HTTP framework,the method will block in the internal event loop
+        .setDocumentRoot("docroot")
+        .createDbClient("sqlite3", "", 3306, "", "", "", 5, "invoicer.db");
+
     drogon::app().run();
     return 0;
 }

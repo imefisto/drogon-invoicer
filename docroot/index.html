@@ -5,14 +5,14 @@
   <title>Invoicer!</title>
   <script>
 function getInvoices() {
-  fetch("/v1/invoices").then(function(response) {
+  fetch("/v2/invoices").then(function(response) {
     return response.json();
   }).then(function(data) {
     var table = document.getElementById("invoices");
 
     data.forEach(function (invoice, index) {
       var tr = table.insertRow();
-      tr.insertCell().innerText = invoice.id;
+      tr.insertCell().innerText = invoice.number;
       tr.insertCell().innerText = invoice.customer;
       tr.insertCell().innerText = invoice.total;
     });
